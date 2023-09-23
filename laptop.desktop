@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Tablet Mode
+GenericName=Tablet Mode
+Comment=Enable auto rotate and on-screen keyboard; disable mouse & keyboard
+Exec=sudo /home/alex/tablet_mode.sh
+Terminal=false
+Icon=tablet

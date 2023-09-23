@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Laptop Mode
+GenericName=Laptop Mode
+Comment=Disable auto rotate and on-screen keyboard; enable mouse & keyboard
+Exec=sudo /home/alex/laptop_mode.sh
+Terminal=false
+Icon=laptop
