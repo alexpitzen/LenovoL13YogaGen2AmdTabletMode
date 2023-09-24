@@ -2,25 +2,22 @@
 
 set -m
 
-echo serio1 > /sys/bus/serio/drivers/psmouse/unbind
-echo serio0 > /sys/bus/serio/drivers/atkbd/unbind
-
-stdbuf -oL -eL libinput debug-events | stdbuf -oL -eL grep 'DEVICE_ADDED.*ETPS/2 Elantech' |
+stdbuf -oL -eL libinput debug-events 2>/dev/null | stdbuf -oL -eL grep 'DEVICE_ADDED.*ETPS/2 Elantech' |
 while read line
 do
-	echo "read $line"
-	echo serio1 > /sys/bus/serio/drivers/psmouse/unbind
+  echo $0 disabling mouse
+  (echo serio1 > /sys/bus/serio/drivers/psmouse/unbind) 2>/dev/null
 done &
 
 
-stdbuf -oL -eL libinput debug-events | stdbuf -oL -eL grep 'DEVICE_ADDED.*AT Translated Set 2 keyboard' |
+stdbuf -oL -eL libinput debug-events 2>/dev/null | stdbuf -oL -eL grep 'DEVICE_ADDED.*AT Translated Set 2 keyboard' |
 while read line
 do
-	echo "read $line"
-	echo serio0 > /sys/bus/serio/drivers/atkbd/unbind
+  echo $0 disabling keyboard
+  (echo serio0 > /sys/bus/serio/drivers/atkbd/unbind) 2>/dev/null
 done &
 
-python3 tablet_mode.py
+python3 tablet_mode.py 1
 
-fg 2
-fg 1
+fg 2 > /dev/null
+fg 1 > /dev/null
