@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -m
-
 stdbuf -oL -eL libinput debug-events 2>/dev/null | stdbuf -oL -eL grep 'DEVICE_ADDED.*ETPS/2 Elantech' |
 while read line
 do
@@ -18,6 +16,3 @@ do
 done &
 
 python3 tablet_mode.py 1
-
-fg 2 > /dev/null
-fg 1 > /dev/null
